@@ -1,9 +1,7 @@
 import axios from 'axios';
 import type { AxiosError } from 'axios';
-import { queryClient } from '@/api/queryClient';
 import { toApiError } from '@/api/errors';
 import type { ApiErrorBody } from '@/api/errors';
-import { authKeys } from '@/features/auth/keys';
 
 export const client = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || '/api',
@@ -14,10 +12,5 @@ export const client = axios.create({
 
 client.interceptors.response.use(
   (response) => response,
-  (error: AxiosError<ApiErrorBody>) => {
-    if (error.response?.status === 401) {
-      queryClient.setQueryData(authKeys.me(), null);
-    }
-    return Promise.reject(toApiError(error));
-  },
+  (error: AxiosError<ApiErrorBody>) => Promise.reject(toApiError(error)),
 );
