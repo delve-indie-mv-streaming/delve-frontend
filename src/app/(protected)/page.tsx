@@ -1,6 +1,8 @@
+'use client';
+
 import { useMe } from '@/features/auth/queries';
 
-export function HomePage() {
+export default function HomePage() {
   const { data: user } = useMe();
 
   return (

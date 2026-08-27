@@ -6,7 +6,7 @@ import type { ApiErrorBody } from '@/api/errors';
 import { authKeys } from '@/features/auth/keys';
 
 export const client = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL || '/api',
   withCredentials: true,
   timeout: 10_000,
   headers: { 'Content-Type': 'application/json' },
