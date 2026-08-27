@@ -31,3 +31,6 @@ out
 
 # Next.js
 next-env.d.ts
+
+# TypeScript
+*.tsbuildinfo
